@@ -58,6 +58,7 @@ TEXTS = {
         "tab_custom": "1. Test a Purchase (Simulator)",
         "tab_eval": "2. Benchmark Requests Explorer (250 Cases)",
         "tab_guide": "3. Financial Principles & Guidelines",
+        "tab_user_guide": "4. User Guide & FAQs",
         "how_it_works_title": "How to Use in 3 Simple Steps",
         "step_1": "Enter Your Finances: Current balance, in-hand salary, and minimum emergency reserve.",
         "step_2": "Specify Your Purchase: Item name, price, and payment preferences.",
@@ -102,7 +103,23 @@ TEXTS = {
         "g3_title": "3. Salary Cycle & Month-End Crunch",
         "g3_desc": "When purchases occur late in the monthly salary cycle (25th–30th), the AI recommends waiting a few days for salary settlement to prevent month-end liquidity stress.",
         "g4_title": "4. Zero-Cost EMI vs Debt Trap Prevention",
-        "g4_desc": "Installments are recommended only when the monthly commitment is comfortably covered by net surplus savings, ensuring you never fall into credit card rollover debt."
+        "g4_desc": "Installments are recommended only when the monthly commitment is comfortably covered by net surplus savings, ensuring you never fall into credit card rollover debt.",
+        "user_guide_heading": "Comprehensive User Guide & Help Center",
+        "user_guide_subheading": "Everything you need to know about making smart, debt-free financial decisions with Buy or Wait AI.",
+        "ug_card1_title": "Understanding Financial Inputs",
+        "ug_card1_desc": "Your Available Balance is liquid cash today. Emergency Fund is your untouchable safety cushion (3-6 months living expenses).",
+        "ug_card2_title": "How 90-Day Simulation Works",
+        "ug_card2_desc": "The engine tests every single day over the next 90 days, subtracting rent, bills, groceries, and debt EMIs to guarantee you never drop below your emergency threshold.",
+        "ug_card3_title": "Interpreting AI Verdicts",
+        "ug_card3_desc": "🟢 Affordable Now = Buy today. 🔵 Affordable with Plan = Take No-Cost EMI. 🟡 Affordable Later = Wait for Payday. 🔴 Not Affordable = Postpone.",
+        "faq1_q": "Why was my purchase rejected even though my bank balance is higher than the price?",
+        "faq1_a": "Because of your Emergency Fund and upcoming fixed debits (rent, groceries, bills) before your next salary credit. If your balance is ₹50,000 and the item is ₹40,000, but your emergency reserve is ₹25,000, your spendable cushion is only ₹25,000. The AI strictly refuses to gamble with your safety net.",
+        "faq2_q": "When does the AI recommend a No-Cost EMI instead of full payment?",
+        "faq2_a": "When paying in full would drain your emergency reserve below the safety threshold, but your monthly surplus savings (Salary minus Fixed Expenses) can comfortably cover the monthly installment.",
+        "faq3_q": "What is the '30-Day Bachat Rule' behind the Wait recommendation?",
+        "faq3_a": "When a purchase is deferred until your next salary date, it protects your month-end liquidity and prevents impulse spending. If you still desire the item after payday, you can purchase it safely.",
+        "faq4_q": "Is my personal financial data secure and private?",
+        "faq4_a": "Yes, 100%. All calculations and simulations execute entirely locally on your machine. Zero financial data is sent to external servers or cloud APIs."
     },
     "hi": {
         "title": "Buy or Wait? (खरीदें या रुकें?)",
@@ -111,6 +128,7 @@ TEXTS = {
         "tab_custom": "1. Naya Kharch Test Karein (New User Simulator)",
         "tab_eval": "2. Benchmark Requests Explorer (250 Cases)",
         "tab_guide": "3. Desi Bachat & Rulebook Guide",
+        "tab_user_guide": "4. User Guide & FAQs (सवालों के जवाब)",
         "how_it_works_title": "Naye User Isko Kaise Use Karein? (3 Simple Steps)",
         "step_1": "Apna Budget Bhariye: Bank balance, in-hand salary aur emergency fund enter karein.",
         "step_2": "Kharch Details Daaliye: Jo phone, bike, ya shopping karni hai uska price likhiye.",
@@ -155,7 +173,23 @@ TEXTS = {
         "g3_title": "3. Mahine Ka Aakhri Hafta (Salary Cycle)",
         "g3_desc": "Agar purchase month-end par ho raha ho, toh AI user ko bolta hai: 'Salary aane tak 5-10 din wait kar lo', taaki month-end cash crunch na ho.",
         "g4_title": "4. No-Cost EMI vs Debt Trap Check",
-        "g4_desc": "EMIs tabhi recommend hoti hain jab monthly installment user ke surplus cash flow mein fit ho rahi ho, taaki credit card debt trap se bacha ja sake."
+        "g4_desc": "EMIs tabhi recommend hoti hain jab monthly installment user ke surplus cash flow mein fit ho rahi ho, taaki credit card debt trap se bacha ja sake.",
+        "user_guide_heading": "User Guide & Madad Kendra (FAQs)",
+        "user_guide_subheading": "Buy or Wait AI ke saath bina kisi karz (debt) ke smart financial decision lene ki poori jaankari.",
+        "ug_card1_title": "Financial Inputs Ko Samajhein",
+        "ug_card1_desc": "Bank Balance aapka aaj ka liquid paisa hai. Emergency Fund aapka suraksha kavach hai (3-6 mahine ka kharcha) jise kabhi chhedna nahi hai.",
+        "ug_card2_title": "90-Din Ka Simulation Kaise Kaam Karta Hai",
+        "ug_card2_desc": "Engine agle 90 din ke har ek din par check karta hai aur rent, ration, EMIs nikaalne ke baad dekhta hai ki balance safe hai ya nahi.",
+        "ug_card3_title": "AI Verdicts Ka Matlab",
+        "ug_card3_desc": "🟢 Affordable Now = Aaj khareedo. 🔵 Affordable with Plan = No-Cost EMI lo. 🟡 Affordable Later = Salary ka wait karo. 🔴 Not Affordable = Abhi cancel karo.",
+        "faq1_q": "Bank balance hone ke baad bhi AI ne purchase reject kyu kiya?",
+        "faq1_a": "Kyunki aapke balance mein se Emergency Fund aur agle salary aane tak ke zaroori kharche (Rent, Ration, Bills) minus kiye jaate hain. Agar balance ₹50,000 hai aur phone ₹40,000 ka hai lekin Emergency fund ₹25,000 hai, toh safe bachat sirf ₹25,000 hai. AI aapki safety se samjhauta nahi karta.",
+        "faq2_q": "Full payment ke badle No-Cost EMI kab recommend hoti hai?",
+        "faq2_a": "Jab ek saath poora paisa dene se emergency fund kam ho raha ho, lekin aapki monthly bachat (Salary minus Kharch) aasaani se har mahine ki installment nikaal sakti ho.",
+        "faq3_q": "Wait recommendation ke peeche '30-Day Bachat Niyam' kya hai?",
+        "faq3_a": "Jab kisi bade kharch ko agli salary tak taal diya jata hai, toh impulsive shopping se bachav hota hai aur mahine ke aakhri dino mein cash crunch nahi hota.",
+        "faq4_q": "Kya mera financial data safe aur private hai?",
+        "faq4_a": "Haan, bilkul 100%. Saare calculations aapke computer par locally run hote hain. Koi bhi data kisi third-party server par nahi jata."
     }
 }
 
@@ -229,6 +263,11 @@ HTML_TEMPLATE = """
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="guide-tab" data-bs-toggle="pill" data-bs-target="#tab-guide" type="button">
                     <i class="bi bi-book me-1"></i> {{ t['tab_guide'] }}
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="faq-tab" data-bs-toggle="pill" data-bs-target="#tab-faq" type="button">
+                    <i class="bi bi-question-circle me-1"></i> {{ t['tab_user_guide'] }}
                 </button>
             </li>
         </ul>
@@ -511,6 +550,92 @@ HTML_TEMPLATE = """
                             <div class="card p-3 h-100 border-start border-danger border-4">
                                 <h6 class="fw-bold text-danger"><i class="bi bi-credit-card-2-front me-2"></i>{{ t['g4_title'] }}</h6>
                                 <p class="small text-muted mb-0">{{ t['g4_desc'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: USER GUIDE & FAQS -->
+            <div class="tab-pane fade" id="tab-faq">
+                <div class="card p-4">
+                    <h4 class="fw-bold mb-2"><i class="bi bi-question-circle-fill text-primary me-2"></i>{{ t['user_guide_heading'] }}</h4>
+                    <p class="text-muted mb-4">{{ t['user_guide_subheading'] }}</p>
+
+                    <!-- 3 Feature Cards -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <div class="card h-100 p-3 bg-light border-0 shadow-none">
+                                <h6 class="fw-bold text-dark"><i class="bi bi-1-circle-fill text-success me-2"></i>{{ t['ug_card1_title'] }}</h6>
+                                <p class="small text-muted mb-0">{{ t['ug_card1_desc'] }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 p-3 bg-light border-0 shadow-none">
+                                <h6 class="fw-bold text-dark"><i class="bi bi-2-circle-fill text-primary me-2"></i>{{ t['ug_card2_title'] }}</h6>
+                                <p class="small text-muted mb-0">{{ t['ug_card2_desc'] }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 p-3 bg-light border-0 shadow-none">
+                                <h6 class="fw-bold text-dark"><i class="bi bi-3-circle-fill text-warning me-2"></i>{{ t['ug_card3_title'] }}</h6>
+                                <p class="small text-muted mb-0">{{ t['ug_card3_desc'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQs Accordion -->
+                    <h5 class="fw-bold mb-3"><i class="bi bi-chat-left-dots-fill text-info me-2"></i>Frequently Asked Questions (FAQs)</h5>
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHead1">
+                                <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    {{ t['faq1_q'] }}
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    {{ t['faq1_a'] }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHead2">
+                                <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    {{ t['faq2_q'] }}
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    {{ t['faq2_a'] }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHead3">
+                                <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    {{ t['faq3_q'] }}
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    {{ t['faq3_a'] }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHead4">
+                                <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    {{ t['faq4_q'] }}
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    {{ t['faq4_a'] }}
+                                </div>
                             </div>
                         </div>
                     </div>
