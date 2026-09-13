@@ -199,79 +199,394 @@ HTML_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ t['title'] }}</title>
+    <title>{{ t['title'] }} — Autonomous AI Financial Decision Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
-        body { background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #1e293b; }
-        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #047857 100%); color: white; padding: 30px 0; margin-bottom: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        .nav-pills .nav-link { font-weight: 600; border-radius: 8px; padding: 10px 18px; color: #475569; }
-        .nav-pills .nav-link.active { background-color: #047857; color: white; }
-        .card { border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; margin-bottom: 20px; }
-        .badge-status { font-size: 0.95rem; padding: 8px 16px; border-radius: 30px; font-weight: 700; display: inline-block; }
-        .status-affordable_now { background-color: #dcfce7; color: #15803d; border: 1px solid #86efac; }
-        .status-affordable_with_plan { background-color: #dbeafe; color: #1d4ed8; border: 1px solid #93c5fd; }
-        .status-affordable_later { background-color: #fef9c3; color: #a16207; border: 1px solid #fde047; }
-        .status-not_affordable { background-color: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
-        .metric-title { font-size: 0.8rem; color: #64748b; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; }
-        .metric-value { font-size: 1.4rem; font-weight: 700; color: #0f172a; }
-        .tip-box { background-color: #f0fdf4; border-left: 5px solid #22c55e; padding: 15px; border-radius: 8px; }
-        .warning-box { background-color: #fffbeb; border-left: 5px solid #f59e0b; padding: 15px; border-radius: 8px; }
-        .danger-box { background-color: #fef2f2; border-left: 5px solid #ef4444; padding: 15px; border-radius: 8px; }
+        :root {
+            --primary: #047857;
+            --primary-dark: #065f46;
+            --primary-light: #10b981;
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+        }
+        body { 
+            background-color: #f8fafc; 
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            color: #1e293b; 
+            overflow-x: hidden;
+        }
+        /* Sticky Glass Navbar */
+        .glass-navbar {
+            background: rgba(15, 23, 42, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            padding: 12px 0;
+            z-index: 1050;
+        }
+        .brand-logo-badge {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #10b981, #047857);
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+        }
+        .brand-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+        .brand-dot {
+            color: #10b981;
+        }
+        .badge-orchestrate {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 8px;
+        }
+        .navbar-nav .nav-link {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            margin: 0 3px;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #f1f5f9;
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .navbar-nav .nav-link.active {
+            background: #047857;
+            color: #ffffff;
+            box-shadow: 0 2px 10px rgba(4, 120, 87, 0.4);
+        }
+        .live-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: rgba(16, 185, 129, 0.12);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+        .pulse-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulse-glow 2s infinite;
+        }
+        @keyframes pulse-glow {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: radial-gradient(circle at 80% 20%, rgba(4, 120, 87, 0.25) 0%, transparent 50%),
+                        radial-gradient(circle at 10% 80%, rgba(30, 58, 138, 0.25) 0%, transparent 50%),
+                        linear-gradient(135deg, #0b1329 0%, #0f172a 100%);
+            color: white;
+            padding: 50px 0 40px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+        }
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            padding: 6px 16px;
+            font-size: 0.82rem;
+            color: #cbd5e1;
+            margin-bottom: 16px;
+        }
+        .hero-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+            margin-bottom: 14px;
+        }
+        .hero-title .highlight {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-desc {
+            font-size: 1.02rem;
+            color: #94a3b8;
+            max-width: 720px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .trust-stat-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 12px 18px;
+            text-align: center;
+            backdrop-filter: blur(8px);
+        }
+        .trust-stat-num {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .trust-stat-lbl {
+            font-size: 0.72rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Modern Card Styling */
+        .card { 
+            border-radius: 16px; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.04); 
+            border: 1px solid #e2e8f0; 
+            margin-bottom: 24px; 
+            background: #ffffff;
+            transition: all 0.2s ease;
+        }
+        .badge-status { 
+            font-size: 0.92rem; 
+            padding: 8px 18px; 
+            border-radius: 30px; 
+            font-weight: 800; 
+            display: inline-block; 
+            letter-spacing: 0.3px;
+        }
+        .status-affordable_now { background-color: #dcfce7; color: #15803d; border: 1.5px solid #86efac; }
+        .status-affordable_with_plan { background-color: #dbeafe; color: #1d4ed8; border: 1.5px solid #93c5fd; }
+        .status-affordable_later { background-color: #fef9c3; color: #a16207; border: 1.5px solid #fde047; }
+        .status-not_affordable { background-color: #fee2e2; color: #b91c1c; border: 1.5px solid #fca5a5; }
+        
+        .metric-card {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 16px;
+            text-align: center;
+            height: 100%;
+        }
+        .metric-title { font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .metric-value { font-size: 1.45rem; font-weight: 800; color: #0f172a; }
+        
+        .tip-box { background-color: #f0fdf4; border-left: 5px solid #22c55e; padding: 16px; border-radius: 10px; }
+        .warning-box { background-color: #fffbeb; border-left: 5px solid #f59e0b; padding: 16px; border-radius: 10px; }
+        .danger-box { background-color: #fef2f2; border-left: 5px solid #ef4444; padding: 16px; border-radius: 10px; }
         .step-badge { background-color: #047857; color: white; border-radius: 50%; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 8px; }
-        .lang-btn { font-size: 0.85rem; font-weight: 600; border-radius: 20px; padding: 6px 14px; }
+        
+        /* Form Inputs */
+        .form-control, .form-select {
+            border-radius: 10px;
+            padding: 10px 14px;
+            border: 1.5px solid #cbd5e1;
+            font-size: 0.95rem;
+            color: #0f172a;
+            font-weight: 500;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #047857;
+            box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.12);
+        }
+        .btn-primary-action {
+            background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+            color: white;
+            font-weight: 700;
+            border-radius: 12px;
+            padding: 14px 24px;
+            font-size: 1rem;
+            border: none;
+            box-shadow: 0 4px 14px rgba(4, 120, 87, 0.35);
+            transition: all 0.2s ease;
+        }
+        .btn-primary-action:hover {
+            background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(4, 120, 87, 0.45);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 40px 0 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 60px;
+        }
+        .site-footer a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .site-footer a:hover {
+            color: #34d399;
+        }
     </style>
 </head>
 <body>
-    <!-- Top Hero Banner -->
-    <div class="hero">
+    <!-- 1. STICKY PROFESSIONAL NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top glass-navbar">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <div>
-                    <h1 class="fw-bold mb-1"><i class="bi bi-wallet2 me-2"></i>{{ t['title'] }}</h1>
-                    <p class="mb-0 text-light opacity-75 small">{{ t['subtitle'] }}</p>
+            <!-- Brand Logo & Title -->
+            <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+                <div class="brand-logo-badge">
+                    <i class="bi bi-wallet2"></i>
                 </div>
-                <!-- Language Selector (English Default / Hindi Toggle) -->
-                <div class="d-flex align-items-center gap-2">
-                    <span class="text-light opacity-75 small"><i class="bi bi-translate me-1"></i>Language:</span>
-                    <div class="btn-group" role="group">
-                        <a href="?lang=en&tab={{ active_tab }}&request_id={{ selected_id }}" class="btn btn-sm lang-btn {% if lang == 'en' %}btn-light text-dark fw-bold{% else %}btn-outline-light{% endif %}">
-                            English 🇬🇧
+                <div>
+                    <span class="brand-title">Buy or Wait<span class="brand-dot">.AI</span></span>
+                    <span class="badge rounded-pill badge-orchestrate ms-1">HackerRank '26</span>
+                </div>
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links & Controls -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Navigation Tabs in Navbar -->
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 nav-pills" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link {% if active_tab == 'custom' %}active{% endif %}" id="custom-tab" data-bs-toggle="pill" data-bs-target="#tab-custom" type="button">
+                            <i class="bi bi-calculator me-1"></i> {{ t['tab_custom'] }}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link {% if active_tab == 'eval' %}active{% endif %}" id="eval-tab" data-bs-toggle="pill" data-bs-target="#tab-eval" type="button">
+                            <i class="bi bi-database-check me-1"></i> {{ t['tab_eval'] }}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="guide-tab" data-bs-toggle="pill" data-bs-target="#tab-guide" type="button">
+                            <i class="bi bi-shield-check me-1"></i> {{ t['tab_guide'] }}
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="faq-tab" data-bs-toggle="pill" data-bs-target="#tab-faq" type="button">
+                            <i class="bi bi-question-circle me-1"></i> {{ t['tab_user_guide'] }}
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Right Side Actions -->
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0 flex-wrap">
+                    <!-- Live Mobile App Link -->
+                    <a href="http://localhost:8081" target="_blank" class="btn btn-sm btn-outline-light rounded-pill px-3 py-1">
+                        <i class="bi bi-phone me-1"></i> Mobile App
+                    </a>
+
+                    <!-- Language Switcher (EN / HI) -->
+                    <div class="btn-group p-1 rounded-pill" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);">
+                        <a href="?lang=en&tab={{ active_tab }}&request_id={{ selected_id }}" class="btn btn-sm rounded-pill px-2 py-1 {% if lang == 'en' %}btn-success text-white fw-bold{% else %}text-light opacity-75{% endif %}">
+                            EN 🇬🇧
                         </a>
-                        <a href="?lang=hi&tab={{ active_tab }}&request_id={{ selected_id }}" class="btn btn-sm lang-btn {% if lang == 'hi' %}btn-light text-dark fw-bold{% else %}btn-outline-light{% endif %}">
-                            हिंदी 🇮🇳
+                        <a href="?lang=hi&tab={{ active_tab }}&request_id={{ selected_id }}" class="btn btn-sm rounded-pill px-2 py-1 {% if lang == 'hi' %}btn-success text-white fw-bold{% else %}text-light opacity-75{% endif %}">
+                            HI 🇮🇳
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </nav>
+
+    <!-- 2. MODERN FINTECH HERO SECTION -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <div class="hero-pill">
+                        <span class="pulse-dot"></span>
+                        <span>Autonomous Financial Reality-Check & Cash-Flow Engine</span>
+                    </div>
+                    <h1 class="hero-title">
+                        Smart Purchase Decisions Before Checkout.<br>
+                        <span class="highlight">Zero Debt Traps. 100% Reserve Safety.</span>
+                    </h1>
+                    <p class="hero-desc">
+                        {{ t['subtitle'] }}. Reconstructs real-time financial positions across recurring EMIs, essential family support, and confirmed salary cycles over a 90-day horizon.
+                    </p>
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <span class="live-status-pill">
+                            <i class="bi bi-shield-fill-check"></i>
+                            {{ t['emergency_protected'] }}
+                        </span>
+                        <span class="live-status-pill" style="color: #60a5fa; border-color: rgba(96, 165, 250, 0.25); background: rgba(96, 165, 250, 0.1);">
+                            <i class="bi bi-cpu-fill"></i>
+                            100% Deterministic (Zero Hallucinations)
+                        </span>
+                        <span class="live-status-pill" style="color: #facc15; border-color: rgba(250, 204, 21, 0.25); background: rgba(250, 204, 21, 0.1);">
+                            <i class="bi bi-incognito"></i>
+                            100% Local Device Privacy
+                        </span>
+                    </div>
+                </div>
+                <!-- Right Side Quick Stats -->
+                <div class="col-lg-4">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="trust-stat-box">
+                                <div class="trust-stat-num text-success">90 Days</div>
+                                <div class="trust-stat-lbl">Cash Flow Forecast</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="trust-stat-box">
+                                <div class="trust-stat-num text-primary">250 Cases</div>
+                                <div class="trust-stat-lbl">Benchmark Requests</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="trust-stat-box">
+                                <div class="trust-stat-num text-warning">₹0 Cost</div>
+                                <div class="trust-stat-lbl">Zero Token Hallucination</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="trust-stat-box">
+                                <div class="trust-stat-num text-info">₹ Lakhs / Cr</div>
+                                <div class="trust-stat-lbl">Indian Currency System</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <div class="container mb-5">
-        <!-- Tab Navigation -->
-        <ul class="nav nav-pills mb-4" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link {% if active_tab == 'custom' %}active{% endif %}" id="custom-tab" data-bs-toggle="pill" data-bs-target="#tab-custom" type="button">
-                    <i class="bi bi-person-plus me-1"></i> {{ t['tab_custom'] }}
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link {% if active_tab == 'eval' %}active{% endif %}" id="eval-tab" data-bs-toggle="pill" data-bs-target="#tab-eval" type="button">
-                    <i class="bi bi-database-check me-1"></i> {{ t['tab_eval'] }}
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="guide-tab" data-bs-toggle="pill" data-bs-target="#tab-guide" type="button">
-                    <i class="bi bi-book me-1"></i> {{ t['tab_guide'] }}
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="faq-tab" data-bs-toggle="pill" data-bs-target="#tab-faq" type="button">
-                    <i class="bi bi-question-circle me-1"></i> {{ t['tab_user_guide'] }}
-                </button>
-            </li>
-        </ul>
-
         <div class="tab-content" id="pills-tabContent">
             <!-- TAB 1: NEW USER SIMULATOR -->
             <div class="tab-pane fade {% if active_tab == 'custom' %}show active{% endif %}" id="tab-custom">
@@ -643,6 +958,73 @@ HTML_TEMPLATE = """
             </div>
         </div>
     </div>
+
+    <!-- 3. PROFESSIONAL CORPORATE FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <div class="brand-logo-badge">
+                            <i class="bi bi-wallet2"></i>
+                        </div>
+                        <span class="brand-title">Buy or Wait<span class="brand-dot">.AI</span></span>
+                    </div>
+                    <p class="small text-muted mb-3">
+                        Autonomous AI Financial Affordability & Cash-Flow Intelligence Agent designed for HackerRank Orchestrate (September 2026). Safeguarding household wealth and eliminating debt traps.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="https://github.com/kaushallakshya71-a11y/Buy-and-Wait" target="_blank" class="text-muted fs-5"><i class="bi bi-github"></i></a>
+                        <a href="https://www.hackerrank.com/contests/hackerrank-orchestrate-september26/challenges/buy-or-wait/submission" target="_blank" class="text-muted fs-5"><i class="bi bi-trophy"></i></a>
+                        <a href="http://localhost:8081" target="_blank" class="text-muted fs-5"><i class="bi bi-phone"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-2">
+                    <h6 class="text-white fw-bold mb-3">Core Modules</h6>
+                    <ul class="list-unstyled small text-muted mb-0">
+                        <li class="mb-2"><a href="#tab-custom" data-bs-toggle="pill" data-bs-target="#tab-custom">Simulator</a></li>
+                        <li class="mb-2"><a href="#tab-eval" data-bs-toggle="pill" data-bs-target="#tab-eval">250 Benchmark Cases</a></li>
+                        <li class="mb-2"><a href="#tab-guide" data-bs-toggle="pill" data-bs-target="#tab-guide">Rulebook Guidelines</a></li>
+                        <li class="mb-2"><a href="#tab-faq" data-bs-toggle="pill" data-bs-target="#tab-faq">User Guide & FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-6 col-lg-3">
+                    <h6 class="text-white fw-bold mb-3">Financial Guardrails</h6>
+                    <ul class="list-unstyled small text-muted mb-0">
+                        <li class="mb-2"><i class="bi bi-check2 text-success me-1"></i> Emergency Nidhi Protection</li>
+                        <li class="mb-2"><i class="bi bi-check2 text-success me-1"></i> Roti & Kirana Budget Lock</li>
+                        <li class="mb-2"><i class="bi bi-check2 text-success me-1"></i> Month-End Payday Sync</li>
+                        <li class="mb-2"><i class="bi bi-check2 text-success me-1"></i> No-Cost EMI Debt Filter</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="text-white fw-bold mb-3">Hackathon Submission</h6>
+                    <p class="small text-muted mb-2">
+                        Official competition entry for <strong>HackerRank Orchestrate</strong>.
+                    </p>
+                    <a href="https://www.hackerrank.com/contests/hackerrank-orchestrate-september26/challenges/buy-or-wait/submission" target="_blank" class="btn btn-sm btn-outline-success rounded-pill px-3 py-2 w-100 text-truncate">
+                        <i class="bi bi-box-arrow-up-right me-1"></i> Submit on HackerRank
+                    </a>
+                </div>
+            </div>
+
+            <hr class="border-secondary opacity-25">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 small text-muted">
+                <div>
+                    © 2026 Buy or Wait AI. Built for HackerRank Orchestrate. All calculations are deterministic and run locally.
+                </div>
+                <div>
+                    <span class="badge bg-dark border border-secondary border-opacity-50 text-light py-1 px-2">
+                        <i class="bi bi-lock-fill text-success me-1"></i> Zero External Data Leaks
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
